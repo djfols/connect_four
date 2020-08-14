@@ -104,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
     player.play('dropPiece.wav');
   }
 
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -112,48 +111,43 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            SizedBox(
-              height: 10,
+//            SizedBox(
+//              height: 10,
+//            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: width / 8,
+                  width: width / 8,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: getTurnColor(),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+                Transform.rotate(
+                  angle: 90 * pi / 180,
+                  child: Text(
+                    'Turn',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Transform.rotate(
+                  angle: 90 * pi / 180,
+                  child: Text(
+                    brain.getDiscColorName(),
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
             ),
             Column(
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(bottom: 35.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(right: 25.0),
-                        child: SizedBox(
-                          height: width / 8,
-                          width: width / 8,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: getTurnColor(),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Transform.rotate(
-                        angle: 90 * pi / 180,
-                        child: Text(
-                          'Turn',
-                          style: TextStyle(fontSize: 25),
-                        ),
-                      ),
-                      Transform.rotate(
-                        angle: 90 * pi / 180,
-                        child: Text(
-                          brain.getDiscColorName(),
-                          style: TextStyle(fontSize: 25),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 GestureDetector(
                   onTap: () {
                     if (columnClickCount < 6) {
@@ -167,7 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     } else {
                       print('COLUMN FULL!');
-                    };
+                    }
+                    ;
                   },
                   child: GridColumn(
                     width: width,
@@ -419,99 +414,96 @@ class _MyHomePageState extends State<MyHomePage> {
                         : gridColorList[42],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 50.0, bottom: 20),
-                  child: Transform.rotate(
-                    angle: 90 * pi / 180,
-                    child: FlatButton(
-                        color: Colors.red[600],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.black, width: 2)),
-                        onPressed: () {
-                          brain.resetGame();
-                          setState(() {
-                            columnClickCount = 0;
-                            column1ClickCount = 6;
-                            column2ClickCount = 12;
-                            column3ClickCount = 18;
-                            column4ClickCount = 24;
-                            column5ClickCount = 30;
-                            column6ClickCount = 36;
-                            clickCounter = 1;
-                            gridColorList[0] = brain.discColor;
-                          });
-                          gridColorList.replaceRange(0, 42, [
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                            Colors.white,
-                          ]);
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              'Reset',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              'Game',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        )),
-                  ),
-                )
               ],
             ),
-            SizedBox(
-              height: 10,
-            )
+            Transform.rotate(
+              angle: 90 * pi / 180,
+              child: FlatButton(
+                  color: Colors.red[600],
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Colors.black, width: 2)),
+                  onPressed: () {
+                    brain.resetGame();
+                    setState(() {
+                      columnClickCount = 0;
+                      column1ClickCount = 6;
+                      column2ClickCount = 12;
+                      column3ClickCount = 18;
+                      column4ClickCount = 24;
+                      column5ClickCount = 30;
+                      column6ClickCount = 36;
+                      clickCounter = 1;
+                      gridColorList[0] = brain.discColor;
+                    });
+                    gridColorList.replaceRange(0, 42, [
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                    ]);
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Reset',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      Text(
+                        'Game',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  )),
+            ),
+//            SizedBox(
+//              height: 10,
+//            ),
           ],
         ),
         // This trailing comma makes auto-formatting nicer for build methods.
