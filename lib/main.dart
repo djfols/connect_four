@@ -132,20 +132,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Transform.rotate(
                   angle: 90 * pi / 180,
-                  child: Text(
-                    'Turn',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-                Transform.rotate(
-                  angle: 90 * pi / 180,
-                  child: Text(
-                    brain.getDiscColorName(),
-                    style: TextStyle(fontSize: 20),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        brain.getDiscColorName(),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Turn',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
+
             Column(
               children: <Widget>[
                 GestureDetector(
@@ -199,8 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     } else {
                       print('COLUMN FULL!');
-                    }
-                    ;
+                    };
                   },
                   child: GridColumn1(
                     width: width,
