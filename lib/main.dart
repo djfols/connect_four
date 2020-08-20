@@ -9,6 +9,7 @@ import 'package:connectfour/components/grid_column6.dart';
 import 'utilities/brain.dart';
 import 'dart:math';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(
@@ -106,6 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
